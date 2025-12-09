@@ -1,0 +1,7 @@
+{
+  "name": "PhishGuardAnalyser",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
