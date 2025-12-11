@@ -32,6 +32,57 @@ const PHISHING_QUIZ: QuizQuestion[] = [
   },
 ];
 
+export interface Alert {
+  id: number;
+  title: string;
+  description: string;
+  date: string;
+  level: 'high' | 'medium' | 'low';
+}
+
+// Interface pour les conseils
+export interface SecurityTip {
+  id: number;
+  title: string;
+  summary: string;
+}
+
+// Données statiques pour les Alertes
+const PHISHING_ALERTS: Alert[] = [
+  {
+    id: 1,
+    title: "Alerte : Faux remboursement fiscal",
+    description: "Des e-mails circulent promettant un remboursement fiscal imminent. Ne cliquez sur aucun lien et ne fournissez aucune information bancaire.",
+    date: "10/12/2025",
+    level: 'high'
+  },
+  {
+    id: 2,
+    title: "Alerte : Faux support Apple/Google",
+    description: "Des appels téléphoniques et des SMS demandent de valider un achat important sous peine de suspension de compte. Raccrochez immédiatement.",
+    date: "01/12/2025",
+    level: 'medium'
+  }
+];
+
+// Données statiques pour les Conseils de Sécurité
+const SECURITY_TIPS: SecurityTip[] = [
+  {
+    id: 1,
+    title: "Vérifiez l'URL de destination",
+    summary: "Avant de cliquer sur un lien, survolez-le avec la souris pour voir l'URL réelle dans la barre d'état. Si elle ne correspond pas, c'est suspect.",
+  },
+  {
+    id: 2,
+    title: "Méfiez-vous de l'urgence",
+    summary: "Le phishing crée un sentiment d'urgence ('votre compte sera suspendu dans 24h') pour vous empêcher de réfléchir ou de vérifier l'information.",
+  },
+  {
+    id: 3,
+    title: "N'ouvrez jamais les pièces jointes non sollicitées",
+    summary: "Les pièces jointes, même nommées 'facture', peuvent contenir des malwares. Confirmez toujours l'envoi par un autre canal.",
+  }
+  ];
 
 @Injectable({
   providedIn: 'root'
@@ -114,5 +165,14 @@ export class PhishingService {
   // 3. Méthode pour récupérer les questions du quiz
   public getQuizQuestions(): QuizQuestion[] { // <--- Ajout de 'public' ici et suppression du point de conflit
     return PHISHING_QUIZ;
+  }
+  // 4. Récupère les dernières alertes
+  public getPhishingAlerts(): Alert[] {
+    return PHISHING_ALERTS;
+  }
+  
+  // 5. Récupère les conseils de sécurité
+  public getSecurityTips(): SecurityTip[] {
+    return SECURITY_TIPS;
   }
 }
