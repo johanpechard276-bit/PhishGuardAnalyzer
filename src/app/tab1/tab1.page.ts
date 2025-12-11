@@ -1,30 +1,28 @@
 // src/app/tab1/tab1.page.ts
 
 import { Component } from '@angular/core';
-import { PhishingService, AnalysisResult } from '../services/phishing'; // <-- Utilisez le chemin corrigé
-import { CommonModule } from '@angular/common'; // Pour *ngIf, *ngFor, etc.
-import { FormsModule } from '@angular/forms'; // Pour [(ngModel)]
-import { IonicModule } from '@ionic/angular'; // Pour toutes les balises ion-
+import { PhishingService, AnalysisResult } from '../services/phishing'; 
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; 
+import { IonicModule } from '@ionic/angular'; 
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
   
-  // 1. DÉCLARATION STANDALONE : rend ce composant indépendant d'un module
+  // 1. DÉCLARATION STANDALONE (OBLIGATOIRE)
   standalone: true, 
   
-  // 2. IMPORTS DIRECTS : inclut tous les modules nécessaires
+  // 2. IMPORTS DIRECTS du HTML
   imports: [
-    IonicModule, 
+    IonicModule,
     CommonModule, 
-    FormsModule
-    // Nous n'importons pas Tab1PageRoutingModule ici car le routage est géré par tabs-routing
+    FormsModule,
   ]
 })
 export class Tab1Page {
   
-  // Variables pour l'interface
   userInput: string = ''; 
   analysisResult: AnalysisResult | null = null; 
   

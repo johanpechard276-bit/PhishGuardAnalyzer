@@ -6,6 +6,11 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
 
+  <h1 class="ion-text-center">Bienvenue sur PhishGuard !</h1>
+  <p class="ion-text-center ion-margin-bottom">
+    Analysez un lien ou un texte suspect pour évaluer son risque de phishing.
+  </p>
+
   <ion-card>
     <ion-card-header>
       <ion-card-title>Analyse de Risque</ion-card-title>
@@ -13,6 +18,7 @@
     </ion-card-header>
 
     <ion-card-content>
+
 
       <ion-textarea [autoGrow]="true" label="Texte ou URL" labelPlacement="stacked"
         placeholder="https://www.site-suspect.com/..." fill="outline" rows="6" [(ngModel)]="userInput"></ion-textarea>
@@ -32,10 +38,14 @@
 
   <ion-card *ngIf="analysisResult" class="ion-margin-top">
     <ion-card-header>
-      <ion-card-title [color]="analysisResult?.level">
-        <span *ngIf="analysisResult?.level === 'safe'">✅ Sûr</span>
-        <span *ngIf="analysisResult?.level === 'suspicious'">⚠️ Suspect</span>
-        <span *ngIf="analysisResult?.level === 'danger'">🛑 DANGER !</span>
+      <ion-card-title [color]="analysisResult?.level" class="ion-text-wrap">
+        <ion-icon slot="start"
+          [name]="analysisResult?.level === 'safe' ? 'shield-checkmark' : (analysisResult?.level === 'danger' ? 'warning' : 'help-circle')">
+        </ion-icon>
+
+        <span *ngIf="analysisResult?.level === 'safe'">✅ Sûr : Aucun risque détecté</span>
+        <span *ngIf="analysisResult?.level === 'suspicious'">⚠️ Suspect : Risque modéré</span>
+        <span *ngIf="analysisResult?.level === 'danger'">🛑 DANGER ! : Risque Élevé</span>
       </ion-card-title>
       <ion-card-subtitle>Score de risque : **{{ analysisResult?.score }}** points</ion-card-subtitle>
     </ion-card-header>
