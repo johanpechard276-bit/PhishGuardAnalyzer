@@ -19,11 +19,12 @@ const routes: Routes = [
       },
       {
         path: 'quiz', // L'onglet 2 doit toujours pointer vers son module (car il n'est pas Standalone)
-        loadChildren: () => import('../tab2/tab2.page').then(m => m.Tab2Page)
+        // Charge la page tab2 en mode Standalone
+        loadComponent: () => import('../tab2/tab2.page').then(m => m.Tab2Page),
       },
       {
         path: 'info', // L'onglet 3 doit toujours pointer vers son module
-        loadChildren: () => import('../tab3/tab3.page').then(m => m.Tab3Page)
+        loadComponent: () => import('../tab3/tab3.page').then(m => m.Tab3Page)
       },
     ]
   },

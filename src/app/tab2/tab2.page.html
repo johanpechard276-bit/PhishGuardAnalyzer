@@ -1,17 +1,66 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+  <ion-toolbar color="secondary">
+    <ion-title>🧠 Quiz de Phishing</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <div *ngIf="!quizCompleted && getCurrentQuestion()">
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title color="secondary">Question {{ currentQuestionIndex + 1 }} / {{ questions.length
+          }}</ion-card-title>
+        <ion-card-subtitle>Est-ce une tentative de Phishing ?</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-textarea readonly [value]="getCurrentQuestion()?.scenario" rows="10" autoGrow="true"
+          fill="outline"></ion-textarea>
+
+        <div class="ion-padding-vertical ion-text-center">
+          <ion-button (click)="submitAnswer(true)" [disabled]="showResult" color="danger" class="ion-margin-end">
+            Oui (Phishing)
+          </ion-button>
+
+          <ion-button (click)="submitAnswer(false)" [disabled]="showResult" color="success">
+            Non (Légitime)
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="showResult">
+      <ion-card-header>
+        <ion-card-title [color]="isCorrect ? 'success' : 'danger'">
+          {{ isCorrect ? '✅ Bonne Réponse !' : '❌ Mauvaise Réponse...' }}
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>L'explication :</strong> {{ getCurrentQuestion()?.explanation }}</p>
+
+        <ion-button (click)="nextQuestion()" expand="block" color="primary" class="ion-margin-top">
+          Question Suivante
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+  <div *ngIf="quizCompleted" class="ion-text-center ion-margin-top">
+    <ion-card color="tertiary">
+      <ion-card-header>
+        <ion-card-title>Quiz Terminé !</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <h2>Votre Score Final :</h2>
+        <h1>{{ score }} / {{ questions.length }}</h1>
+        <ion-button (click)="resetQuiz()" expand="block" color="light" class="ion-margin-top">
+          Recommencer le Quiz
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
 </ion-content>

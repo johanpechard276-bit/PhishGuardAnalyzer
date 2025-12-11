@@ -1,2 +1,28 @@
 // For information on how to create your own theme, please refer to:
 // https://ionicframework.com/docs/theming/
+// src/theme/variables.scss (Coller ici pour remplacer les couleurs par défaut)
+
+:root {
+  /**
+   * Variables de Couleur de Base (Thème Cyber sombre)
+   */
+  --ion-color-primary: #00FF7F; // Vert lumineux (Néon)
+  --ion-color-primary-rgb: 0,255,127;
+
+  --ion-color-secondary: #9370DB; // Violet/Lavande
+  --ion-color-secondary-rgb: 147,112,219;
+
+  --ion-color-danger: #FF4500; // Rouge danger
+  --ion-color-danger-rgb: 255,69,0;
+
+  --ion-color-warning: #FFD700; // Jaune/Or (Avertissement)
+  --ion-color-warning-rgb: 255,215,0;
+
+  --ion-background-color: #121212; // Fond sombre
+  --ion-background-color-rgb: 18,18,18;
+
+  --ion-text-color: #E0E0E0; // Texte clair
+  --ion-text-color-rgb: 224,224,224;
+
+  // ... le reste du fichier doit rester ici.
+}
